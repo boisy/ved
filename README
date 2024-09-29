@@ -1,0 +1,73 @@
+
+Compiling should be quite simple...especially if your system is the
+same as mine.
+
+The command 'make all' should work (just ignore the warning/error
+message when it tried to make the docs). However, it assumes that
+you have 2 programs already installed:
+
+	makedepend - this program parses all the .c files and creates
+		a dependency table which is appended to the current
+		makefile. You should probably do this step since the
+		relationships between certain library/system files
+		change between different systems. Makedepend is part
+		of the imake package.
+
+	cproto - this program parses the .c files and extracts the
+		global prototype information and puts it in the file
+		proto.h. If you don't have cproto and do a 'make all'
+		or a 'make proto' you will end up with a empty proto.h
+		file and an awful lot of compiler errors. cproto is a
+		neat tool--get it at http://www.clark.net/pub/dickey.
+
+
+	tclsh - the program 'makecmds' is used to update the jump tables
+		used by the main program. The location of tcl is hard
+		coded into makecmds. If you get a failure with makecmds
+		then make sure you have tclsh and that the first line
+		of makecmds has the correct location.
+
+If you do not have ncurses installed, Ved should compile and work. The source
+code conditionals around sections of code which require a mouse, or move/resize
+windows. Your milage may vary....
+
+If you have a system which does not provide asprintf() or strsep(), you can
+define flags in the Makefile to include private versions of these functions.
+I have no idea if the replacements are as good as, better, or worse that
+the libc versions.
+
+To keep my directories somewhat readable, I stick the .o files in their
+own dir. This is possible with GNU Make. If you don't have GNU Make this
+might not work. I think that the changes to make are noted in the Makefile.
+
+Some systems (RH 5.1) do not have makedepend installed. I don't know why
+this is (and is one of many reasons I don't use RH 5.1). If you don't have
+makedepend you can compile Ved by deleting the dependency list in the
+Makefile. This is everything after the line "# DO NOT DELETE" (around line
+number 159). Now, do a plain 'make' (no options). Make will compile all
+the parts needed and you should get a working Ved. This is not an ideal
+solution--the make process will not be correct if you make changes to
+your OS or Ved source files after the first compile. For this reason
+it is important to comment out the other references to makedepend in
+the Makefile so that all modules are compiled each time. Better yet,
+get makedepend (if someone has a URL for this let me know and
+I'll update this).
+	
+The 'make all' command also creates the objs directory. If you don't
+want to do a 'make all', create the objs directory by hand and then
+do a 'make'. This should create a binary in your current directory.
+
+'make all' will attempt to create the documenation package which is
+not distributed. It will print an error message which can be ignored.
+
+'make clean' will delete all old object, debug and core files.
+
+'make tar' gathers the source files, docs, and aux programs into a
+distribution. This is really just for my use.
+
+'make static' creates a statically compiled version.
+
+'make disk' creates a backup disk. Really just for my use.
+
+
+

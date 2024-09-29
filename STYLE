@@ -1,0 +1,42 @@
+
+I use gnu indent to keep formatting on my source code consistent. It would be nice if one could comment .indent.pro files...alas, it ain't so. This file comments my style (which is basicly classical K&R with the addition of more vertical space).
+
+My .indent.pro file is:
+
+	-nbad  -bap  -nbc -bl  -bli0 -br -c33 -cd33 -ncdb
+	-ncs -ce -ci4 -cli8 -cp33 -d0 -di0 -nfca -i8 -ip0
+	-l75 -lp  -npcs -nsob -psl -sc -ss -ts8 
+
+
+The meanings (pasted from the info file) of these options are:
+
+
+-nbad		Do not force blank lines after declarations.
+-bap		Force blank lines after procedure bodies.
+-nbc		Do not force newlines after commas in declarations.
+-bl		Put braces on [new]line after `if', etc.
+-bli0		Indent braces 0 spaces.
+-br		Put braces on [new]line with `if', etc. and structure declarations
+-c33		Put comments to the right of code in column 33.
+-cd33		Put comments to the right of the declarations in column 33.
+-ncdb		Do not put comment delimiters on blank lines.
+-ncs		Do not put a space after cast operators.
+-ce		Cuddle else and preceeding `}'.
+-ci8		Continuation indent of 8 spaces (1 tab)
+-cli8		Case label indent of 8 spaces (1 tab)
+-cp33		Put comments to the right of `#else' and `#endif' statements in column 33.
+-d0		Set indentation of comments not to the right of code to 0 spaces.
+-di0		Put variables in column 0.
+-nfca		Do not format any comments.
+-i8		Set indentation level to 8 spaces (1 tab).
+-ip0		Indent parameter types in old-style function definitions by 0 spaces.
+-l75		Line length (for comment formatting)
+-lp		Line up continued lines at parentheses.
+-npcs		Do not put space after the function in function calls.
+-nsob		Do not swallow optional blank lines.
+-psl		Put the type of a procedure on the line before its name.
+-sc		Put the `*' character at the left of comments.
+-ss		On one-line `for' and `while' statments, force a blank before the semicolon.
+-ts8		Set tab size to 8 spaces.
+
+

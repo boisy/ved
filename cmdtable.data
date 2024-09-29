@@ -1,0 +1,569 @@
+# This is a source file used to create the jump table for
+# ved. It is parsed by the tcl program makecmds. The format
+# is quite specific, so be careful.
+
+# One file, cmdtable.h is  created. It contains an enumeration of
+# the commands  and structure definitions.
+# The file main.h has the defaults for the cmdtable.
+#	NOTE: in ved macros, keybinding, etc. you use the function name to
+#		do things (CURSOR_UP = new.key.seq) inside ved you use the
+#		symbolic name value (if(c==CURSOR_UP).
+#	NOTE: prototypes for the functions (all are void fn(void) ).
+#
+# We also use this data to create the man/tex pages. See makecmds for
+# details.
+#
+# The following data must have the form:
+# 
+# 	function  name  flag keylist comment
+# where:
+# 	function - the function associated with the command.
+#	name	 - the name of the key (from key-cap), eg. UpArrow or Ctrl-Q
+#	flag	-  flag bits. Only bit 0 defined for now, 1==disable in no-edit mode
+#       keylist  - list of keys, space delimited. End of list
+#			is indicated by matching start. Eg. [ KEY_ESCAPE a ]
+#	comment - string telling what command does (eg. Moves cursor up one line)
+# 			currently unused, but probably will be needed for help
+#	help    - number of the help screen. 1-9, 0==no help (eg:mouse)
+#		
+# Each entry must span three lines, line splits are not important, but there MUST
+# be three lines!!!!
+
+cursor_up
+	"Up"		0	{ KEY_UP }
+	"Move cursor up one line"		HELPSECT_CURSOR
+
+cursor_down
+	"Down"		0	{ KEY_DOWN }
+	"Move cursor down one line"		HELPSECT_CURSOR
+
+cursor_right
+	"Right"		1	{ KEY_RIGHT }
+	"Move cursor right one position"	HELPSECT_CURSOR
+
+
+cursor_left
+	"Left"		1	{ KEY_LEFT }
+	"Move cursor left one position"		HELPSECT_CURSOR
+
+
+cursor_linestart
+	"Esc Left"	0	{ KEY_ESC KEY_LEFT }
+	"Move cursor to start of line"		HELPSECT_CURSOR
+
+
+cursor_lineend
+	"Esc Right"	0	{ KEY_ESC KEY_RIGHT }
+	"Move cursor to end of line"		HELPSECT_CURSOR
+
+
+cursor_pagebottom
+	"End"		0	{ KEY_END }
+	"Move cursor to bottom of page"		HELPSECT_CURSOR
+
+
+cursor_pagetop
+	"Home"		0	{ KEY_HOME }
+	"Move cursor to top of page"		HELPSECT_CURSOR
+
+
+cursor_pageup
+	"PageUp"	0	{ KEY_PPAGE }
+	"Move cursor back one page"		HELPSECT_CURSOR
+
+
+cursor_pagedown
+	"PageDown" 	0	{ KEY_NPAGE }
+	"Move cursor forward one page"		HELPSECT_CURSOR
+
+
+cursor_filestart
+ 	"Esc Up" 	0	{ KEY_ESC KEY_UP }
+	"Move cursor to start of buffer"	HELPSECT_CURSOR
+
+
+cursor_fileend
+  	"Esc Down" 	0	{ KEY_ESC KEY_DOWN }
+	"Move cursor to end of buffer"		HELPSECT_CURSOR
+
+
+cursor_startnword
+ 	"Ctrl-L" 	1	{ 'L'-0x40 }
+	"Move cursor to start of next word"	HELPSECT_CURSOR
+
+
+cursor_startpword
+	"Ctrl-K"	1	{ 'K'-0x40 }
+	"Move cursor to start of prior word"	HELPSECT_CURSOR
+
+
+cursor_startword
+	"Esc ["		1	{ KEY_ESC '[' }
+	"Move cursor to start of current word"	HELPSECT_CURSOR
+
+
+cursor_endword
+	"Esc ]"		1	{ KEY_ESC ']' }
+	"Move cursor to end of current word"	HELPSECT_CURSOR
+
+
+cursor_startpp
+	"Ctrl-Y"	1	{ 'Y'-0x40 }
+	"Move cursor to start of current paragraph"	HELPSECT_CURSOR
+
+
+cursor_endpp
+	"Ctrl-T"	1	{ 'T'-0x40 }
+	"Move cursor to end of current paragraph"	HELPSECT_CURSOR
+
+
+cursor_match
+	"Esc /"		1	{ KEY_ESC '/' }
+	"Move cursor to matching brace"		HELPSECT__CURSOR
+
+
+scroll_left
+	"Esc \{"	0	{ KEY_ESC '\{' }
+	"Scroll screen left"			HELPSECT_DISPLAY
+
+
+scroll_right
+	"Esc \}"	0	{ KEY_ESC '\}' }
+	"Scroll screen right"			HELPSECT_DISPLAY
+
+
+jump
+	"Esc-J"		0	{ KEY_ESC 'J' }
+	"Enter Jump command"			HELPSECT_FIND
+
+mouse
+	""		0	{ KEY_MOUSE }
+	"Mouse event, unbound"			0
+
+windows_file
+	"Menu-windows"	0	{}
+	"Load new file into new buffer"		HELPSECT_FILE
+
+windows_new
+	"Menu-windows"	0	{}
+	"Create a new empty buffer" 	HELPSECT_FILE
+
+file_append
+	"ESC-G"		0	{ KEY_ESC 'G' }
+	"Append new file at cursor"		HELPSECT_FILE
+
+file_new
+	"ESC-`"		0	{ KEY_ESC '\`' }
+	"Load new file into buffer"		HELPSECT_FILE
+
+find
+	"ESC-F"		0	{ KEY_ESC 'F' }
+	"Enter Find command"			HELPSECT_FIND
+
+find_next
+	"ESC-N"		0	{ KEY_ESC 'N' }
+	"Find next occurrence"			HELPSECT_FIND
+
+find_back
+	"ESC-S"		0	{ KEY_ESC 'S' }
+	"Enter Find-backwards command"		HELPSECT_FIND
+
+find_prior
+	"ESC-I"		0	{ KEY_ESC 'I' }
+	"Find previous occurrence"		HELPSECT_FIND
+
+replace	
+	"ESC-R" 	1	{ KEY_ESC 'R' }
+	"Enter Replace command"			HELPSECT_FIND
+
+replace_again
+	"ESC-A"		1	{ KEY_ESC 'A' }
+	"Replace again"				HELPSECT_FIND
+
+keyboard_abort
+	"CTRL-C"	0	{ 'C'-0x40 }
+	"Keyboard Abort"			HELPSECT_MISC
+
+windows_raise
+	"Menu-windows"	0	{}
+	"Select buffer to display"		HELPSECT_DISPLAY
+
+windows_next
+	"Esc-PageDown"	0	{ KEY_ESC KEY_NPAGE }
+	"Display Next buffer"			HELPSECT_DISPLAY
+	
+windows_prior
+	"Esc-PageUp"	0	{ KEY_ESC KEY_PPAGE }
+	"Display Prior buffer"			HELPSECT_DISPLAY
+	
+windows_showall
+	"Menu-windows"	0	{}
+	"Display all buffers on screen"		HELPSECT_DISPLAY
+
+toggle_wordwrap
+	"Menu-options"	0	{}
+	"Toggle the screen wordwrapping on/off"	HELPSECT_MISC
+
+toggle_crdisplay
+	"Menu-options"	0	{}
+	"Toggle display of EOLs"		HELPSECT_MISC
+	
+toggle_overwrite
+	"Menu-options"	0	{}
+	"Toggle overwrite/insert edit mode"	HELPSECT_MISC
+	
+toggle_autoindent
+	"Menu-options"	0	{}
+	"Toggle auto indentation"		HELPSECT_MISC
+	
+toggle_cmode
+	"Menu-options"	0	{}
+	"Toggle C-mode"				HELPSECT_MISC
+	
+toggle_casematch
+	"Menu-options"	0	{}
+	"Toggle case matching"			HELPSECT_MISC
+	
+toggle_autonum
+	"Menu-options"	0	{}
+	"Toggle autonumber mode on/off"		HELPSECT_MISC
+	
+autonumber_set
+	"Menu-options"	0	{}
+	"Set value for autonumber"		HELPSECT_MISC
+	
+set_tabwidth
+	"Menu-options"	0	{}
+	"Set tab width"					HELPSECT_MISC
+	
+set_wildcard
+	"Menu-options"	0	{}
+	"Set wildcard character"		HELPSECT_MISC
+	
+set_keybindings
+	"Menu-options"	0	{}
+	"Display keybindings menu"		HELPSECT_MISC
+	
+load_rc
+	"Menu-options"	0	{}
+	"Load a rc file"			HELPSECT_MISC
+	
+create_rc
+	"Menu-options"	0	{}
+	"Save options to a rc file"		HELPSECT_MISC
+	
+set_rc_line
+	"Menu-options"	0	{}
+	"Enter rc command"			HELPSECT_MISC
+	
+menu0_enable
+	"F1"		0	{ KEY_F(1) }
+	"Enable menu 1"				HELPSECT_MENU
+
+menu1_enable
+	"F2"		0	{ KEY_F(2) }
+	"Enable menu 2"				HELPSECT_MENU
+
+
+menu2_enable
+	"F3"		0	{ KEY_F(3) }
+	"Enable menu 3"				HELPSECT_MENU
+
+menu3_enable
+	"F4"		0	{ KEY_F(4) }
+	"Enable menu 4"				HELPSECT_MENU
+
+menu4_enable
+	"F5"		0	{ KEY_F(5) }
+	"Enable menu 5"				HELPSECT_MENU
+
+menu5_enable
+	"F6"		0	{ KEY_F(6) }
+	"Enable menu 6"				HELPSECT_MENU
+
+menu6_enable
+	"F6"		0	{ KEY_F(7) }
+	"Enable menu 7"				HELPSECT_MENU
+
+quit
+	"ESC-Q"		0	{ KEY_ESC 'Q' }
+	"Quit/Save buffer"			HELPSECT_FILE
+
+quit_all
+	"UNBOUND"	0	{}
+	"Quit/save all buffers"			HELPSECT_FILE
+	
+backspace
+	"Backspace"	1	{ KEY_BACKSPACE }
+	"Erase char before cursor"		HELPSECT_EDIT
+
+hexinput
+	"ESC-Backspace" 0	{ KEY_ESC KEY_BACKSPACE }
+	"Enter hex value"			HELPSECT_EDIT
+
+delete
+	"Delete"	1	{ KEY_DC }
+	"Erase char at cursor"			HELPSECT_EDIT
+
+change_word
+	"Esc-8"		1	{ KEY_ESC '8'}
+	"Mark/change current word"		HELPSECT_EDIT
+	
+insert
+	"Insert"	1	{ KEY_IC }
+	"Insert a SPACE at the cursor"		HELPSECT_EDIT
+
+insert_tab
+	"Tab"		1	{ 0x09 }
+	"Insert a TAB at the cursor"		HELPSECT_EDIT
+
+caser
+	"ESC-C"		1	{ KEY_ESC 'C'}
+	"Convert case of char/word"		HELPSECT_EDIT
+
+transpose
+	"ESC-T"		1	{ KEY_ESC 'T'}
+	"Transpose chars/word/line"		HELPSECT_EDIT
+
+delete_line
+	"ESC-7"		1	{ KEY_ESC '7'}
+	"Delete line"				HELPSECT_DELETE
+
+delete_toeol
+	"ESC-V"		1	{ KEY_ESC 'V'}
+	"Delete from cursor to end of line"	HELPSECT_DELETE
+
+delete_toeos
+	"ESC-K"		1	{ KEY_ESC 'K'}
+	"Delete from cursor to right screen"	HELPSECT_DELETE
+
+delete_word
+	"ESC-L"		1	{ KEY_ESC 'L'}
+	"Delete current word"			HELPSECT_DELETE
+
+delete_endword
+	"ESC-Y"		1	{ KEY_ESC 'Y'}
+	"Delete to end of current word"		HELPSECT_DELETE
+
+undelete
+	"ESC-U"		1	{ KEY_ESC 'U'}
+	"Undo last deletion"			HELPSECT_DELETE
+
+buffer_info
+	"ESC-W"		0	{ KEY_ESC 'W' }
+	"Report info on buffer"			HELPSECT_MISC
+
+terminal_refresh
+	"ESC-Z"		0	{ KEY_ESC 'Z' }
+	"Refresh screen"			HELPSECT_DISPLAY
+
+move_window
+	"F12"		0	{ KEY_F(12) }
+	"Move current window"			HELPSECT_DISPLAY
+
+resize_window
+	"F11"		0	{ KEY_F(11) }
+	"Resize current window"			HELPSECT_DISPLAY
+
+block_cmd
+	"ESC-B"		1	{ KEY_ESC 'B' }
+	"Enable block menu"			HELPSECT_BLOCK
+
+mark_block_end
+	"ESC-." 	1	{ KEY_ESC '.' }
+	"Insert end block marker"		HELPSECT_BLOCK
+
+mark_block_start
+	"ESC-,"		1	{ KEY_ESC ',' }
+	"Insert begin block marker"		HELPSECT_BLOCK
+
+block_copy
+	"Block-Menu"	1	{}
+	"Copy block to cursor position"		HELPSECT_BLOCK
+	
+block_delete
+	"Block-Menu"	1	{}
+	"Delete  block"				HELPSECT_BLOCK
+	
+block_move
+	"Block-Menu"	1	{}
+	"Move block to cursor position"		HELPSECT_BLOCK
+	
+block_save
+	"Block-Menu"	1	{}
+	"Save block to a file"			HELPSECT_BLOCK
+	
+block_paste
+	"Block-Menu"	1	{}
+	"Copy block to the paste buffer"	HELPSECT_BLOCK
+
+block_cut
+	"Block-Menu"	1	{}
+	"Copy block to paste buffer and delete"	HELPSECT_BLOCK
+	
+block_get
+	"Block-Menu"	1	{}
+	"Get data from paste buffer"		HELPSECT_BLOCK
+	
+block_yget
+	"Block-Menu"	1	{}
+	"Get data from paste buffer, leave copy"	HELPSECT_BLOCK
+
+block_delmarks
+	"Block-Menu"	1	{}
+	"Delete block markers"			HELPSECT_BLOCK
+	
+block_sort
+	"Block-Menu"	1	{}
+	"Sort block"				HELPSECT_BLOCK
+	
+block_double
+	"Block-Menu"	1	{}
+	"Duplicate block a columns"		HELPSECT_BLOCK
+
+block_unformat
+	"Block-Menu"	1	{}
+	"Unformat block"			HELPSECT_BLOCK
+
+block_wordwrap
+	"Block-Menu"	1	{}
+	"Wordwrap block"			HELPSECT_BLOCK
+			
+block_start
+	"Block-Menu"	1	{}
+	"Move to block start"			HELPSECT_BLOCK
+
+block_end
+	"Block-Menu"	1	{}
+	"Move to block end"			HELPSECT_BLOCK
+	
+block_to_buffer
+	"Block-Menu"	1	{}
+	"Create new buffer with block"		HELPSECT_BLOCK
+	
+		
+mark_position
+	"ESC-;"		0	{ KEY_ESC ';' }
+	"Insert position marker"		HELPSECT_MISC
+
+mark_jump
+	"ESC-\\'"	0	{ KEY_ESC '\\'' }
+	"Jump to position marker"		HELPSECT_FIND
+
+
+macro_start
+	"Ctrl-A"	0	{ 'A'-0x40 }
+	"Start a macro"				HELPSECT_MACROS
+
+macro_learn
+	"ESC-M"		0	{ KEY_ESC 'M' }
+	"Learn a macro"				HELPSECT_MACROS
+
+macro_filename
+	"Esc-1"		1	{ KEY_ESC '1' }
+	"Print filename"			HELPSECT_MACROS
+	
+macro_file_ext
+	"ESC-2"		1	{ KEY_ESC '2' }
+	"Print filename extension"		HELPSECT_MACROS
+
+macro_file_base
+	"ESC-3"		1	{ KEY_ESC '3'}
+	"Print filename without extension"	HELPSECT_MACROS
+		
+macro_time1
+	"ESC-6"		1	{ KEY_ESC '5' }
+	"Print time string 1"			HELPSECT_MACROS
+	
+macro_time2
+	"ESC-7"		1	{ KEY_ESC '6' }
+	"Print time string 2"			HELPSECT_MACROS
+	
+macro_number
+	"ESC-5"		1	{ KEY_ESC '4' }
+	"Print value of auto-number register"	HELPSECT_MACROS
+	
+repeat_key
+	"ESC-\\\\"	0	{ KEY_ESC '\\\\' }
+	"Repeat key/command"			HELPSECT_MISC
+
+get_cline
+	"ESC-("		1	{ KEY_ESC '(' }
+	"Mark copy line"			HELPSECT_BLOCK
+
+get_line
+	"ESC-9"		1	{ KEY_ESC '9' }
+	"Mark copy line from cursor"		HELPSECT_BLOCK
+
+copy_line
+	"ESC-0"		1	{ KEY_ESC '0' }
+	"Copy marked line"			HELPSECT_BLOCK
+
+xsave_buffer
+	"ESC-X"		1	{ KEY_ESC 'X' }
+	"Save buffer, no quit"			HELPSECT_FILE
+
+speller_word
+	"Menu-spell"	0	{}
+	"Lookup current word in spell"		HELPSECT_SPELL
+	
+speller_file
+	"Menu-spell"	0	{}
+	"Spell check entire buffer from cursor"	HELPSECT_SPELL
+	
+speller_block
+	"Menu-spell"	0	{}
+	"Spell check block"			HELPSECT_SPELL
+	
+speller_save_new_words
+	"Menu-spell"	0	{}
+	"Save new words to file"		HELPSECT_SPELL
+	
+help_block
+	"Menu-help"	0	{}
+	"Display block help"			0
+	
+help_cursor
+	"Menu-help"	0	{}
+	"Display cursor help"			0
+	
+help_delete
+	"Menu-help"	0	{}
+	"Display delete help"			0
+	
+help_display
+	"Menu-help"	0	{}
+	"Display display help"			0
+	
+help_edit
+	"Menu-help"	0	{}
+	"Display editing help"			0
+	
+help_file
+	"Menu-help"	0	{}
+	"Display file help"			0
+	
+help_search
+	"Menu-help"	0	{}
+	"Display search/find help"		0
+	
+help_macros
+	"Menu-help"	0	{}
+	"Display help for macros"		0
+	
+help_menus
+	"Menu-help"	0	{}
+	"Display menu help"			0
+	
+help_misc
+	"Menu-help"	0	{}
+	"Display miscellaneous help"		0
+	
+help_spell
+	"Menu-help"	0	{}
+	"Display speller help"			0
+
+doshell
+	"Esc-!"		0	{ KEY_ESC '!' }
+	"Execute sub-shell"			HELPSECT_MISC
+

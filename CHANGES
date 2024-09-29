@@ -1,0 +1,100 @@
+This is a list of changes made to Ved since the initial posting in April/99 of
+version 3.0. Minor changes in docs, etc. do not trigger a revision update.
+
+April 24, 1999
+
+	Changed my email/www addresses to the uniserve domain.
+
+May 3, 1999
+	
+	Made comments about makedepend in README
+
+May 5, 1999 (Version 3.0.1)
+
+	Fixed bug which moved block markers which were in the
+	edit line after insert/delete in same line.
+	
+	version number is printed with -? info
+	
+
+May 7, 1999 (Version  3.0.2)
+	
+	Added block-wrap function.
+	
+	Cursor movement in menus now does wrap-around from top to bottom.
+	
+	Clicking on the scrollbar now moves to the relative line, not the
+	relative position.
+	
+	Added option to enable/disable scroll indicators. See docs for
+	the rc option scroll_indicator.
+
+	Cleaned up the docs a bit by printing the rcfile option lines
+	in a larger font.
+
+	A minor bug in ncurses has been worked around. See comments in
+	scroll_ind.c for details.
+	
+	Thomas E. Dickey tested the code out on solaris, and wrote the fallback.c
+	functions. In doing this he needed to outcomment the mouse and resize
+	code. This as been added to the main source code. If NCURSES_VERSION is
+	not defined, we don't include any of that code. This should mean that
+	you can compile Ved with old curses. Please let me know of success!
+	I am not prepared to support Ved on anything other than Ncurses/Linux
+	at this point, so you are on your own. No changes are being made to 
+	documentation to reflect non-ncurses installations.
+	
+	If your libs are missing asprintf() or strsep() they are included in
+	fallback.c. You need to set a define in the Makefile for this to work.
+	
+	Fixed over/underflow error in word move routines when at start/end of
+	buffer.
+		
+September 18, 1999 (Version  3.0.3)
+
+	Fixed one-off error in delete line. It was deleting the first character
+	of the next line.
+
+March 17, 2000
+	Fixed one-off error in buffer-info. It was reporting that the cursor
+	was on line #1 when at the end of file.
+	
+April 2, 2000 (Version 3.0.4)
+
+	After upgrading to Linux Mandrake 7.0 I started to get some funny errors.
+	Seems that strdup() in the library supplied with this distro doesn't like
+	being passed a NULL ptr. I've gone over the code in a number of places
+	and done explicit checks for the passing of NULL to strcpy(). Also,
+	made a change to translate_delim_string() so that an empty string
+	is returned to the caller as NULL ptr.
+	
+	make proto stopped working. For some unknown reason I have to add
+	the -E option with the arg /lib/cpp. Funny, since this is the default.
+	Discussions with T.E. Dickey indicate that the current rpm is 4.6.
+	A version 4.6a is avaliable on his site with works properly.
+	
+	The clean up code after a buffer deletion and the buffer init code
+	has been fortified. Was causing occasional seg errors due to my
+	carelessness.
+
+November 4, 2000
+
+	Fixed annoying bug which created filenames starting with a NULL if
+	the backup directory had not be set. This entailed a minor change
+	to the tilde expansion routine so that it returns the original
+	arg instead of a NULL if the arg's first character was a '\0'.
+	
+October 2, 2002
+
+	Fixed one off error in macro_add_learned(). I was copying one too many
+	characters from the scratch buffer into the macro buffer which caused
+	extra characters in subsequent macro definitions.
+
+May 1, 2004
+
+Fixed one-off problem in dialog.c which caused barfing on certain
+sizes of terminals.
+
+Seems that the correct includes are time.h (not sys/time.h) and errno.h.
+
+

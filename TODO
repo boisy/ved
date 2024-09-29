@@ -1,0 +1,9 @@
+
+Some distracting flashing when scrolling...due to scroll bar marker? Yes, but it only flashes with a small (less than one screen) buffer. Hmmmm?
+
+Clean up rc file reader to permit mulitple if/endif (needs a recursive func)
+
+
+Need a make install/uninstall in the makefile
+
+

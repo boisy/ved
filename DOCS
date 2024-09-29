@@ -1,0 +1,15 @@
+
+The documenation for ved is contained in the docs directory.
+The following should be present:
+
+ docs/ved.ps - a postcript manaual
+ docs/html/  - html version of the manual. Use your browser.
+               Start with index.html.
+ docs/faq.ps - some frequently asked questions, postscript
+ docs/faq.html - html version of the faq.
+ 
+
+These docs were prepared using latex and frends.
+If you need a different format, shout.
+
+ 

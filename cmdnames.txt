@@ -1,0 +1,129 @@
+\fB autonumber_set \fR| Set value for autonumber
+\fB backspace \fR| Erase char before cursor
+\fB block_cmd \fR| Enable block menu
+\fB block_copy \fR| Copy block to cursor position
+\fB block_cut \fR| Copy block to paste buffer and delete
+\fB block_delete \fR| Delete  block
+\fB block_delmarks \fR| Delete block markers
+\fB block_double \fR| Duplicate block a columns
+\fB block_end \fR| Move to block end
+\fB block_get \fR| Get data from paste buffer
+\fB block_move \fR| Move block to cursor position
+\fB block_paste \fR| Copy block to the paste buffer
+\fB block_save \fR| Save block to a file
+\fB block_sort \fR| Sort block
+\fB block_start \fR| Move to block start
+\fB block_to_buffer \fR| Create new buffer with block
+\fB block_unformat \fR| Unformat block
+\fB block_wordwrap \fR| Wordwrap block
+\fB block_yget \fR| Get data from paste buffer, leave copy
+\fB buffer_info \fR| Report info on buffer
+\fB caser \fR| Convert case of char/word
+\fB change_word \fR| Mark/change current word
+\fB copy_line \fR| Copy marked line
+\fB create_rc \fR| Save options to a rc file
+\fB cursor_down \fR| Move cursor down one line
+\fB cursor_endpp \fR| Move cursor to end of current paragraph
+\fB cursor_endword \fR| Move cursor to end of current word
+\fB cursor_fileend \fR| Move cursor to end of buffer
+\fB cursor_filestart \fR| Move cursor to start of buffer
+\fB cursor_left \fR| Move cursor left one position
+\fB cursor_lineend \fR| Move cursor to end of line
+\fB cursor_linestart \fR| Move cursor to start of line
+\fB cursor_match \fR| Move cursor to matching brace
+\fB cursor_pagebottom \fR| Move cursor to bottom of page
+\fB cursor_pagedown \fR| Move cursor forward one page
+\fB cursor_pagetop \fR| Move cursor to top of page
+\fB cursor_pageup \fR| Move cursor back one page
+\fB cursor_right \fR| Move cursor right one position
+\fB cursor_startnword \fR| Move cursor to start of next word
+\fB cursor_startpp \fR| Move cursor to start of current paragraph
+\fB cursor_startpword \fR| Move cursor to start of prior word
+\fB cursor_startword \fR| Move cursor to start of current word
+\fB cursor_up \fR| Move cursor up one line
+\fB delete \fR| Erase char at cursor
+\fB delete_endword \fR| Delete to end of current word
+\fB delete_line \fR| Delete line
+\fB delete_toeol \fR| Delete from cursor to end of line
+\fB delete_toeos \fR| Delete from cursor to right screen
+\fB delete_word \fR| Delete current word
+\fB doshell \fR| Execute sub-shell
+\fB file_append \fR| Append new file at cursor
+\fB file_new \fR| Load new file into buffer
+\fB find \fR| Enter Find command
+\fB find_back \fR| Enter Find-backwards command
+\fB find_next \fR| Find next occurrence
+\fB find_prior \fR| Find previous occurrence
+\fB get_cline \fR| Mark copy line
+\fB get_line \fR| Mark copy line from cursor
+\fB help_block \fR| Display block help
+\fB help_cursor \fR| Display cursor help
+\fB help_delete \fR| Display delete help
+\fB help_display \fR| Display display help
+\fB help_edit \fR| Display editing help
+\fB help_file \fR| Display file help
+\fB help_macros \fR| Display help for macros
+\fB help_menus \fR| Display menu help
+\fB help_misc \fR| Display miscellaneous help
+\fB help_search \fR| Display search/find help
+\fB help_spell \fR| Display speller help
+\fB hexinput \fR| Enter hex value
+\fB insert \fR| Insert a SPACE at the cursor
+\fB insert_tab \fR| Insert a TAB at the cursor
+\fB jump \fR| Enter Jump command
+\fB keyboard_abort \fR| Keyboard Abort
+\fB load_rc \fR| Load a rc file
+\fB macro_filename \fR| Print filename
+\fB macro_file_base \fR| Print filename without extension
+\fB macro_file_ext \fR| Print filename extension
+\fB macro_learn \fR| Learn a macro
+\fB macro_number \fR| Print value of auto-number register
+\fB macro_start \fR| Start a macro
+\fB macro_time1 \fR| Print time string 1
+\fB macro_time2 \fR| Print time string 2
+\fB mark_block_end \fR| Insert end block marker
+\fB mark_block_start \fR| Insert begin block marker
+\fB mark_jump \fR| Jump to position marker
+\fB mark_position \fR| Insert position marker
+\fB menu0_enable \fR| Enable menu 1
+\fB menu1_enable \fR| Enable menu 2
+\fB menu2_enable \fR| Enable menu 3
+\fB menu3_enable \fR| Enable menu 4
+\fB menu4_enable \fR| Enable menu 5
+\fB menu5_enable \fR| Enable menu 6
+\fB menu6_enable \fR| Enable menu 7
+\fB mouse \fR| Mouse event, unbound
+\fB move_window \fR| Move current window
+\fB quit \fR| Quit/Save buffer
+\fB quit_all \fR| Quit/save all buffers
+\fB repeat_key \fR| Repeat key/command
+\fB replace \fR| Enter Replace command
+\fB replace_again \fR| Replace again
+\fB resize_window \fR| Resize current window
+\fB scroll_left \fR| Scroll screen left
+\fB scroll_right \fR| Scroll screen right
+\fB set_keybindings \fR| Display keybindings menu
+\fB set_rc_line \fR| Enter rc command
+\fB set_tabwidth \fR| Set tab width
+\fB set_wildcard \fR| Set wildcard character
+\fB speller_block \fR| Spell check block
+\fB speller_file \fR| Spell check entire buffer from cursor
+\fB speller_save_new_words \fR| Save new words to file
+\fB speller_word \fR| Lookup current word in spell
+\fB terminal_refresh \fR| Refresh screen
+\fB toggle_autoindent \fR| Toggle auto indentation
+\fB toggle_autonum \fR| Toggle autonumber mode on/off
+\fB toggle_casematch \fR| Toggle case matching
+\fB toggle_cmode \fR| Toggle C-mode
+\fB toggle_crdisplay \fR| Toggle display of EOLs
+\fB toggle_overwrite \fR| Toggle overwrite/insert edit mode
+\fB toggle_wordwrap \fR| Toggle the screen wordwrapping on/off
+\fB transpose \fR| Transpose chars/word/line
+\fB undelete \fR| Undo last deletion
+\fB windows_file \fR| Load new file into new buffer
+\fB windows_new \fR| Create a new empty buffer
+\fB windows_next \fR| Display Next buffer
+\fB windows_prior \fR| Display Prior buffer
+\fB windows_raise \fR| Select buffer to display
+\fB windows_showall \fR| Display all buffers on screen
+\fB xsave_buffer \fR| Save buffer, no quit

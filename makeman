@@ -1,0 +1,171 @@
+#!/bin/sh
+
+# This script creates a man page for ved.
+# It is broken down into logical segments to make
+# it easier to rearrange if the need arises.
+
+out="ved.1"
+date=`date "+%d %B %Y"` 
+
+echo -n '.TH VED 1 ' >$out
+echo -n \"$date\" >>$out
+echo  " \"Bob van der Poel Software\" \"Ved Text Editor\"" >>$out
+
+###############33
+
+echo ".SH NAME
+.B Ved
+ncurses based, full screen text editor
+.SH \"SYNOPSIS\"
+.B ved
+[
+.BI \-auvl
+.BI +nnn
+] [
+.BI file(s)
+\ ] " >>$out
+
+##################3
+
+echo ".SH DESCRIPTION
+.B Ved
+is a full screen editor running under a ncurses environment.
+
+It is not a vi or emacs clone!
+
+If you invoke
+.B Ved
+with no filenames on the command line a full screen directory
+selector will be displayed. You pick the file to edit from this
+screen.
+
+Alternately, you can specify one or more filenames on the command line.
+Each file will be read into a separate buffer (up to 50 buffers are
+available).
+
+You really should read the docs, in postscript or HTML format, available at
+the distribution sites where you got
+.B Ved
+to really understand how to use it and get the most out of this
+program.
+" >>$out
+
+##############
+
+echo ".SH OPTIONS
+.TP
+.B -a
+Append the filenames specified on the command line into one buffer. The
+files are appended in the order of any shell expansions.
+
+.TP
+.B -u
+Convert alien linefeeds to native format. In the Unix version of
+.B Ved
+this will convert single Carriage returns (Mac/OS9 format) to a single EOL and
+CR/EOL (DOS format) to a single EOL.
+
+.TP
+.B -l
+Log errors and some useful information when reading a rc file to the file
+\"vedrc.log\". If this file already exists, new data will be appended
+to the end of the file. This option is useful for debugging user supplied
+rc files.
+
+.TP
+.B -v 
+Invoke
+.B Ved
+in view only mode
+
+.TP
+.B -?
+Display a brief help screen
+
+.TP
+.B +nnn
+Position cursor on line
+.B nnn
+in the file following. When using multiple filenames you can
+include a line designation for each file. ">>$out
+
+###################
+
+echo ".SH COMMANDS
+The following is a list of the commands available in the
+.B Ved
+editor.
+
+.TS
+center tab(|);
+l l
+l l .
+\fBCommand name|\fRDesciption
+=
+" >> $out
+
+cat cmdnames.txt >>$out
+
+echo ".TE" >> $out
+
+################
+
+echo ".SH CAVEATS
+.B Ved
+is very dependent on the installation of a properly working ncurses
+and the terminfo database.
+
+This man page is very brief. For more information refer to the documentation
+which was distributed with the source package. This  documentation
+is supplied in html and postscript format. If you have troubles with
+these formats please contact the author. " >>$out
+
+#################
+
+echo ".SH AUTHOR
+.B Ved
+was written by Bob van der Poel. You can reach the author via email
+at
+.B <bvdp@uniserve.com>
+or visit his web site at
+.B <http://mypage.uniserve.com/~bvdp>.
+If you want to use older methods of communication, send mail to PO Box 57,
+Wynndel, BC, V0B 2N0, Canada. " >>$out
+
+###################
+
+echo ".SH BUGS
+Report bugs to
+.B <bvdp@uniserve.com>.
+I don't promise anything...but will probably look into it and fix it. ">>$out
+
+###################
+
+echo ".SH COPYRIGHT
+Copyright \(co 1999 Bob van der Poel Software.
+.B Ved
+is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2, or (at your option) any later
+version.
+
+.B Ved
+is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+for more details. ">>$out
+
+###################
+
+echo ".SH AVAILABILITY
+The most recent released version of
+.B Ved
+is always available from
+my personal web page
+.B http://users.uniserve.com/~bvd.
+If you post it somewhere else, please let me know so I can add it to this list." >>$out
+
+
+
+
+
